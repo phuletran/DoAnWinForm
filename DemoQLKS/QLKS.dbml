@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLKS" Class="QLKSDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-7UKQNQ0\SQLEXPRESS;Initial Catalog=QLKS;Integrated Security=True" SettingsObjectName="DemoQLKS.Properties.Settings" SettingsPropertyName="QLKSConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.NhanVien" Member="NhanViens">
+    <Type Name="NhanVien">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="DoB" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Sex" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Role" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LichSuDN" Member="LichSuDNs">
+    <Type Name="LichSuDN">
+      <Column Name="idLogin" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idNhanVien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TimeLogin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhachHang" Member="KhachHangs">
+    <Type Name="KhachHang">
+      <Column Name="CMND" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="KhachHang_TTPhongDangThue" Member="TTPhongDangThues" ThisKey="CMND" OtherKey="CMND" Type="TTPhongDangThue" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Phong" Member="Phongs">
+    <Type Name="Phong">
+      <Column Name="idPhong" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Phong_TTPhongDangThue" Member="TTPhongDangThues" ThisKey="idPhong" OtherKey="idPhong" Type="TTPhongDangThue" />
+      <Association Name="Phong_HoaDon" Member="HoaDons" ThisKey="idPhong" OtherKey="idPhong" Type="HoaDon" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TTPhongDangThue" Member="TTPhongDangThues">
+    <Type Name="TTPhongDangThue">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idPhong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CMND" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="TênKH" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="TimeStart" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SoNguoi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThoiGianThue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhuThuCheckIn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhuThuCheckOut" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GiaPhongNiemYet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhuThuThem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Phong_TTPhongDangThue" Member="Phong" ThisKey="idPhong" OtherKey="idPhong" Type="Phong" IsForeignKey="true" />
+      <Association Name="KhachHang_TTPhongDangThue" Member="KhachHang" ThisKey="CMND" OtherKey="CMND" Type="KhachHang" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDon" Member="HoaDons">
+    <Type Name="HoaDon">
+      <Column Name="idHoadon" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idPhong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TenKH" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CMND" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayLapHD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PhuThuCI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhuThuCO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GiaPhongNiemYet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoNgayThue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhuThu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TongCong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Phong_HoaDon" Member="Phong" ThisKey="idPhong" OtherKey="idPhong" Type="Phong" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
