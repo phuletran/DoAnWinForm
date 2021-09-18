@@ -16,3 +16,4 @@ E:\New folder\DemoQLKS\DemoQLKS\obj\x86\Debug\DemoQLKS.fLogin.resources
 E:\New folder\DemoQLKS\DemoQLKS\obj\x86\Debug\DemoQLKS.fGiaodienChinh.resources
 E:\New folder\DemoQLKS\DemoQLKS\obj\x86\Debug\DemoQLKS.fThongTinDatPhong.resources
 E:\New folder\DemoQLKS\DemoQLKS\obj\x86\Debug\DemoQLKS.fKhachHang.resources
+E:\New folder\DemoQLKS\DemoQLKS\obj\x86\Debug\DemoQLKS.csprojResolveAssemblyReference.cache
